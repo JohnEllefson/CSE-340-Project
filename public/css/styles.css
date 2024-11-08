@@ -4,3 +4,307 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+/********************************/
+/* Basic Styles                 */
+/********************************/
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#branding .brand-link {
+  text-decoration: none;
+  color: #333;
+}
+
+#branding .brand-title {
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+#account .account-link {
+  font-size: 0.9em;
+  color: #393737;
+  text-decoration: none;
+  position: relative;
+  top: -10px;
+}
+
+h1 {
+  font-size: 1.3em;
+  font-weight: 800;
+  margin: 0;
+  padding: 20px 0;
+  text-align: left;
+  color: #333;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin: 0;
+  padding: 15px 0;
+  text-align: left;
+  color: #333;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+}
+
+.translucent-box {
+  position: absolute;
+  top: 42%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(253, 223, 160, 0.8);
+  padding: 10px;
+  display: inline-block;
+  border: none;
+  width: 152px;
+  height: 130px; 
+}
+
+.box-text {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  color: rgb(10, 159, 185);
+  font-size: 1em;
+}
+
+#box-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.clickable-image {
+  position: fixed;
+  top: 33%;
+  right: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.translucent-box-image {
+  width: 80%;
+  height: auto;
+  cursor: pointer;
+}
+
+
+/********************************/
+/* Review Section (Main page)   */
+/********************************/
+#reviews-title {
+  margin-bottom: -10px;
+}
+
+.main-reviews-items {
+  font-size: 1em;
+  color: #333;
+  margin: 5px 0;
+  padding-left: 0;
+  text-align: left;
+  list-style-position: inside;
+}
+
+.main-reviews-items li {
+  margin-bottom: 10px;
+}
+
+
+/********************************/
+/* Upgrades Section (Main page) */
+/********************************/
+#upgrades-title {
+  margin-bottom: -15px;
+}
+
+.upgrades-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  max-width: 325px;
+}
+
+.upgrade-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upgrade-box {
+  border: 2px solid black;
+  background-color: rgb(11, 188, 211);
+  padding: 10px;
+  width: 135px;
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade-box img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.upgrade-link {
+  color: blue;
+  font-weight: normal;
+  text-decoration: underline;
+  margin-top: 5px;
+  display: block;
+}
+
+.content-container {
+  display: block;
+}
+
+
+
+/********************************/
+/* Viewport for larger screens  */
+/********************************/
+@media (min-width: 769px) {   
+  body {
+    background-image: url("/images/site/small_check.jpg");
+  }
+
+  #wrapper { 
+    width: 90%;
+    height: auto;
+    max-width: 1080px;
+    max-height: auto;
+    background-color: white;
+    border: 7px solid #0c90bc;
+    border-radius: 8px;
+    margin: 30px auto;
+  }
+
+  .main-content h2 {
+    font-size: 28px;
+  }
+
+  .content-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content-container {
+    display: flex;
+    gap: 35px;
+  }
+
+  .main-upgrades, .main-reviews {
+    flex: 1;
+  }
+
+  .main-upgrades {
+    order: 1;
+  }
+
+  .upgrade-item {
+    padding: 5px;
+  }
+
+  .main-reviews {
+    order: 2;
+  }
+
+  .main-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 850px;
+    max-height: auto;
+  }
+
+  #account {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-right: 25px; 
+  }
+
+  #branding {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 25px;
+  }
+
+  #main-title h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    margin-left: 40px;
+  }
+
+  .translucent-box {
+    top: 37%;
+    left: 35%;   
+    width: 170px;
+    height: 160px; 
+    font-size:large;
+  }
+
+  #reviews-title {
+    margin-bottom: 15px;
+  }
+
+  .content-container li {
+    padding-bottom: 10px;
+    font-size: 18px;
+  }
+
+   footer {
+    margin-left: 2%;
+   }
+}
