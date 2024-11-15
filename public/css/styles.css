@@ -95,7 +95,7 @@ h2 {
   top: 42%;
   left: 25%;
   transform: translate(-50%, -50%);
-  background-color: rgba(253, 223, 160, 0.8);
+  background-color: rgba(253, 223, 160, 0.95);
   padding: 10px;
   display: inline-block;
   border: none;
@@ -107,7 +107,7 @@ h2 {
   list-style-type: none;
   padding-left: 0;
   margin: 0;
-  color: rgb(10, 159, 185);
+  color: rgb(12, 126, 146);
   font-size: 1em;
 }
 
@@ -223,7 +223,7 @@ h2 {
     width: 90%;
     height: auto;
     max-width: 1080px;
-    max-height: auto;
+    max-height: 1080px;
     background-color: white;
     border: 7px solid #0c90bc;
     border-radius: 8px;
@@ -265,7 +265,7 @@ h2 {
     display: block;
     margin: 0 auto;
     max-width: 850px;
-    max-height: auto;
+    max-height: 850px;
   }
 
   #account {
