@@ -37,10 +37,10 @@ Util.buildClassificationGrid = async function (data) {
               <img src="${vehicle.inv_thumbnail}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" /></a>`;
           grid += '<div class="namePrice">';
           grid += '<hr />';
-          grid += '<h2>';
+          grid += '<h3>';
           grid += `<a href="../../inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
               ${vehicle.inv_make} ${vehicle.inv_model}</a>`;
-          grid += '</h2>';
+          grid += '</h3>';
           grid += `<span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>`;
           grid += '</div>';
           grid += '</li>';
@@ -67,7 +67,7 @@ Util.buildVehicleDetailView = function (vehicleData) {
 
   return `
     <div class="vehicle-detail">
-      <h1>${make} ${model}</h1>
+      <h2 id="detailsHeading">${make} ${model}</h2>
       <div class="vehicle-detail-container">
         <img src="${imageFull}" alt="${make} ${model}" class="vehicle-image" />
         <div class="vehicle-info">

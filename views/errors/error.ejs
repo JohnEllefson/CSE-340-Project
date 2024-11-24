@@ -1,9 +1,11 @@
 <%# Content Heading %>
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-    } %>
+  <h2 id="errorHeading">Error <%= title %></h2>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+  <img id="errorImg" src="/images/site/ErrorOops.jpg"></img>
 
 <%# Message Block %>
-<%- message %>
+<p id="errorMessage"><%- message %></p>

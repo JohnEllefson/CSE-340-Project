@@ -135,6 +135,11 @@ h2 {
   cursor: pointer;
 }
 
+footer a {
+  display: flex;
+  margin-bottom: 12px;
+}
+
 
 /********************************/
 /* Review Section (Main page)   */
@@ -210,6 +215,90 @@ h2 {
 }
 
 
+/********************************/
+/* Classifications Page */
+/********************************/
+#classificationHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+#inv-display li {
+  max-width: 280px;
+  max-height: 400px;
+  margin: 0 auto 20px auto;
+  border: 3px solid #9c9c9c;
+  border-radius: 25px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#inv-display li img {
+  font-weight: bold;
+  width: 100%;
+  height: auto;
+}
+
+#inv-display li::marker {
+  font-size: 0em;
+}
+
+#inv-display li hr {
+  height: 4px;
+  border: none;
+  background-color: rgb(28, 28, 28);
+}
+
+.namePrice {
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/********************************/
+/* Details Page */
+/********************************/
+
+#detailsHeading  {
+  font-size: 26px;
+}
+
+.vehicle-detail {
+  font-size: 23px;
+}
+
+.vehicle-detail img {
+  display: flex;
+  max-width: 90%;
+}
+
+.vehicle-info {
+  margin-left: 13px;
+}
+
+
+/********************************/
+/* Error Page */
+/********************************/
+#errorHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+#errorHeading, #errorMessage {
+  margin-left: 20px;
+}
+
+#errorMessage {
+  font-size: 19px;
+  padding-bottom: 20px;
+}
+
+#errorImg {
+  width: 290px;
+  height: auto;
+}
+
 
 /********************************/
 /* Viewport for larger screens  */
@@ -222,6 +311,7 @@ h2 {
   #wrapper { 
     width: 90%;
     height: auto;
+    min-height: 00px;
     max-width: 1080px;
     max-height: none;
     background-color: white;
@@ -307,4 +397,51 @@ h2 {
    footer {
     margin-left: 2%;
    }
+
+
+  /********************************/
+  /* Classifications Page (Size: 769)*/
+  /********************************/
+  #inv-display {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #inv-display li {
+    flex: 1 1 100%;
+  }
+
+
+  /********************************/
+  /* Details Page (Size: 769)*/
+  /********************************/
+  .vehicle-detail {
+    font-size: 23px;
+  }
+
+  .vehicle-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 5px;
+    font-size: 23px;
+  }
+
+  #detailsHeading  {
+    margin-left: 20px;
+  }
+
+  .vehicle-image {
+    grid-column: 1 / 2;
+    max-width: 100%;
+  }
+
+  .vehicle-info {
+    grid-column: 2 / 3;
+    margin-left: 0;
+  }
+
+  .vehicle-info > *:nth-child(odd) {
+    background-color: #dedede;
+  }
 }
