@@ -301,6 +301,145 @@ footer a {
 
 
 /********************************/
+/* Login Page */
+/********************************/
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-top: 10px;
+}
+
+.login-form input {
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.login-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.flash-message {
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #ffc107;
+  color: #212529;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+/********************************/
+/* Register Page                */
+/********************************/
+.register-form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form label {
+  margin-top: 10px;
+}
+
+.register-form input {
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.register-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.required {
+  color: red;
+  font-weight: bold;
+}
+
+.form-instructions {
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+input.error {
+  border-color: red;
+}
+
+input.error + span {
+  color: red;
+  font-size: 0.8em;
+}
+
+#togglePassword {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#togglePassword:focus,
+#togglePassword:hover {
+  outline: none;
+  background-color: #0056b3;
+}
+
+#togglePassword.error {
+  background-color: #dc3545;
+  color: white;
+  font-size: 1rem;
+}
+
+/* Invalid Input Styling */
+input:required:invalid {
+  background-color: #ffe6e6; /* Light red */
+  border-color: red;
+}
+
+/* Valid Input Styling */
+input:required:valid {
+  background-color: #e6ffe6; /* Light green */
+  border-color: green;
+}
+
+input {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input::placeholder {
+  color: #888; /* Light gray */
+}
+
+
+/********************************/
 /* Viewport for larger screens  */
 /********************************/
 @media (min-width: 769px) {   
