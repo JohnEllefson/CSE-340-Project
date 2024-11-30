@@ -1,19 +1,21 @@
-<h2 id="managmentHeading">Inventory Management</h2>
+<div class="management-container">
+  <h2>Inventory Management</h2>
 
-<!-- Flash Message -->
-<% if (typeof messages !== "undefined" && messages.length > 0) { %>
-  <div class="flash-message">
+  <!-- Flash Message -->
+  <% if (typeof messages !== "undefined" && messages.length > 0) { %>
+    <div class="flash-message">
+      <ul>
+        <% messages.forEach(function(message) { %>
+          <li><%= message %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>  
+
+  <section>
     <ul>
-      <% messages.forEach(function(message) { %>
-        <li><%= message %></li>
-      <% }); %>
+      <li><a href="/inv/add-classification">Add New Classification</a></li>
+      <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
     </ul>
-  </div>
-<% } %>  
-
-<section id="managmentOptions">
-  <ul>
-    <li><a href="/inv/add-classification">Add New Classification</a></li>
-    <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
-  </ul>
-</section>
+  </section>
+</div>

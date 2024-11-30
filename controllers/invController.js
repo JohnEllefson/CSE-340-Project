@@ -115,7 +115,7 @@ invCont.addInventoryView = async function (req, res, next) {
       nav,
       classificationDropdown,
       messages: req.flash("notice"),
-      errors: null,
+      errors: [],
     });
   } catch (error) {
     next(error);

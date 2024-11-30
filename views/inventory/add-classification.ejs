@@ -1,8 +1,4 @@
-<h2 id="newClassificationHeading">Add New Classification</h2>
-
-<p class="form-instructions">
-  Classification names cannot contain spaces or special characters.
-</p>
+<h2 class="sub-heading">Add New Classification</h2>
 
 <!-- Flash Messages -->
 <% if (typeof messages !== "undefined" && messages.length > 0) { %>
@@ -11,7 +7,7 @@
   </div>
 <% } %>
 
-<!-- Error Display -->
+<!-- Error Messages -->
 <% if (errors && errors.length > 0) { %>
   <div class="error-message">
     <ul>
@@ -22,21 +18,23 @@
   </div>
 <% } %>
 
-<!-- Add Classification Form -->
-<form action="/inv/add-classification" method="post" class="classification-form">
-  <label for="classification_name">Classification Name:</label>
-  <input
-    type="text"
-    id="classification_name"
-    name="classification_name"
-    required
-    pattern="^[a-zA-Z0-9]+$"
-    title="Classification name must be alphanumeric without spaces or special characters."
-    value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
-  >
-  <span class="validation-message"></span>
-  <button type="submit">Add Classification</button>
-</form>
+<!-- Form -->
+<div class="form-container">
+  <form action="/inv/add-classification" method="POST">
+    <label for="classification_name">Classification Name:</label>
+    <input
+      type="text"
+      id="classification_name"
+      name="classification_name"
+      required
+      pattern="^[a-zA-Z0-9]+$"
+      title="Classification name must be alphanumeric."
+      value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+    >
+    <span class="validation-message"></span>
+    <button type="submit">Add Classification</button>
+  </form>
+</div>
 
 <script>
   document.querySelector('.classification-form').addEventListener('submit', (event) => {

@@ -1,4 +1,5 @@
-<h2 id="newInvHeading">Add New Inventory Item</h2>
+
+<h2 class="sub-heading">Add New Inventory Item</h2>
 
 <!-- Flash Messages -->
 <% if (typeof messages !== "undefined" && messages.length > 0) { %>
@@ -7,7 +8,7 @@
   </div>
 <% } %>
 
-<!--  
+<!-- Error Messages -->
 <% if (errors && errors.length > 0) { %>
   <div class="error-message">
     <ul>
@@ -16,15 +17,14 @@
       <% }); %>
     </ul>
   </div>
-<% } %> -->
+<% } %>
 
-<!-- Add Inventory Form -->
-<form action="/inv/add-inventory" method="post" class="inventory-form" novalidate>
-  <label for="classificationList">Classification:</label>
-  <%- classificationDropdown %>
+<!-- Form -->
+<div class="form-container">
+  <form action="/inv/add-inventory" method="POST">
+    <label for="classificationList">Classification:</label>
+    <%- classificationDropdown %>
 
-  
-  <div>
     <label for="inv_make">Make:</label>
     <input
       type="text"
@@ -36,9 +36,9 @@
       value="<%= typeof inv_make !== 'undefined' ? inv_make : '' %>"
     >
     <span class="validation-message"></span>
-  </div>
 
-  <div>
+    <br>
+
     <label for="inv_model">Model:</label>
     <input
       type="text"
@@ -49,10 +49,10 @@
       title="Model must be alphanumeric."
       value="<%= typeof inv_model !== 'undefined' ? inv_model : '' %>"
     >
-  <span class="validation-message"></span>
-  </div>
+    <span class="validation-message"></span>
 
-  <div>
+    <br>
+
     <label for="inv_year">Year:</label>
     <input
       type="number"
@@ -65,9 +65,9 @@
       value="<%= typeof inv_year !== 'undefined' ? inv_year : '' %>"
     >
     <span class="validation-message"></span>
-  </div>
 
-  <div>
+    <br>
+
     <label for="inv_price">Price:</label>
     <input
       type="number"
@@ -80,9 +80,9 @@
       value="<%= typeof inv_price !== 'undefined' ? inv_price : '' %>"
     >
     <span class="validation-message"></span>
-  </div>
 
-  <div id="newInvDescription">
+    <br>
+
     <label for="inv_description">Description:</label>
     <textarea
       id="inv_description"
@@ -91,9 +91,9 @@
       title="Description is required."
     ><%= typeof inv_description !== 'undefined' ? inv_description : '' %></textarea>
     <span class="validation-message"></span>
-  </div>
 
-  <div>
+    <br>
+
     <label for="inv_image">Image Path:</label>
     <input
       type="text"
@@ -104,9 +104,9 @@
       value="<%= typeof inv_image !== 'undefined' ? inv_image : '/images/vehicles/no-image.png' %>"
     >
     <span class="validation-message"></span>
-  </div>
 
-  <div>
+    <br>
+
     <label for="inv_thumbnail">Thumbnail Path:</label>
     <input
       type="text"
@@ -117,39 +117,40 @@
       value="<%= typeof inv_thumbnail !== 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.png' %>"
     >
     <span class="validation-message"></span>
-  </div>
 
-<div>
-  <label for="inv_miles">Miles:</label>
-  <input
-    type="number"
-    id="inv_miles"
-    name="inv_miles"
-    required
-    min="0"
-    title="Miles must be a non-negative number."
-    value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>"
-  >
-  <span class="validation-message"></span>
+    <br>
+
+    <label for="inv_miles">Miles:</label>
+    <input
+      type="number"
+      id="inv_miles"
+      name="inv_miles"
+      required
+      min="0"
+      title="Miles must be a non-negative number."
+      value="<%= typeof inv_miles !== 'undefined' ? inv_miles : '' %>"
+    >
+    <span class="validation-message"></span>
+
+    <br>
+
+    <label for="inv_color">Color:</label>
+    <input
+      type="text"
+      id="inv_color"
+      name="inv_color"
+      required
+      pattern="^[a-zA-Z]+$"
+      title="Color must contain only letters."
+      value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>"
+    >
+    <span class="validation-message"></span>
+
+    <br>
+
+    <button type="submit">Add Inventory</button>
+  </form>
 </div>
-
-<div>
-  <label for="inv_color">Color:</label>
-  <input
-    type="text"
-    id="inv_color"
-    name="inv_color"
-    required
-    pattern="^[a-zA-Z]+$"
-    title="Color must contain only letters."
-    value="<%= typeof inv_color !== 'undefined' ? inv_color : '' %>"
-  >
-  <span class="validation-message"></span>
-</div>
-
-  <button type="submit">Add Inventory</button>
-</form>
-
 
 <script>
   document.querySelectorAll('input[required], textarea[required]').forEach((input) => {

@@ -11,11 +11,13 @@
 /********************************/
 body {
   font-family: Arial, sans-serif;
+  padding: 10px;
 }
 
 nav {
   background-color: #333;
   padding: 10px 0;
+  font-size: 12px;
 }
 
 nav ul {
@@ -65,6 +67,12 @@ nav ul li a {
   text-decoration: none;
   position: relative;
   top: -10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }
 
 h1 {
@@ -330,24 +338,54 @@ footer a {
 
 
 /***************************/
-/* Management Page         */
+/* Management Page Styles  */
 /***************************/
-ul {
-  list-style-type: none;
+.management-container {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.management-container h2 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.management-container ul {
+  list-style: none;
   padding: 0;
 }
 
-ul li {
+.management-container ul li {
   margin: 10px 0;
+  font-size: 18px;
 }
 
-ul li a {
+.management-container ul li a {
   text-decoration: none;
   color: #007bff;
+  display: block;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  text-align: center;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-ul li a:hover {
-  text-decoration: underline;
+.management-container ul li a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.management-container .flash-message {
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #ffc107;
+  color: #212529;
+  border-radius: 5px;
+  text-align: center;
 }
 
 
@@ -383,10 +421,6 @@ ul li a:hover {
 
 .register-form label {
   margin-top: 10px;
-}
-
-.form-instructions {
-  margin-left: 20px;
 }
 
 .register-form input {
@@ -449,15 +483,13 @@ input.error + span {
   font-size: 1rem;
 }
 
-/* Invalid Input Styling */
 input:required:invalid {
-  background-color: #ffe6e6; /* Light red */
+  background-color: #ffe6e6;
   border-color: red;
 }
 
-/* Valid Input Styling */
 input:required:valid {
-  background-color: #e6ffe6; /* Light green */
+  background-color: #e6ffe6;
   border-color: green;
 }
 
@@ -466,68 +498,48 @@ input {
 }
 
 input::placeholder {
-  color: #888; /* Light gray */
+  color: #888;
 }
 
 
 /********************************/
-/* Inventory Management Page    */
+/* Add New Classification & Inventory Forms */
 /********************************/
-#managmentOptions {
-  margin-left: 20px;
-  padding-bottom: 5px;
-}
-
-
-/********************************/
-/* Inventory Management Page    */
-/********************************/
-.classification-form {
-  margin-left: 20px;
-  padding-bottom: 5px;
-}
-
-
-/********************************/
-/* Inventory Management Page    */
-/********************************/
-.inventory-form {
-  max-width: 330px;
+.form-container {
+  max-width: 400px;
   margin: 0 auto;
-  padding-top: 15px;
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.inventory-form label {
-  font-size: 18px;
+.form-container label {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #343a40;
 }
 
-.inventory-form input {
+.form-container input,
+.form-container select,
+.form-container textarea {
   padding: 8px;
-  margin-top: 10px;
-}
-
-#classificationList {
-  max-width: 190px;
-  height: 30px;
   margin-top: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.inventory-form textarea {
-  margin-top: 10px;
+.form-container textarea {
+  resize: vertical;
 }
 
-#newInvDescription {
-  display: flex;
-  align-items: center;
-}
-
-#newInvDescription label {
-  margin-right: 5px;
-}
-
-.inventory-form button {
+.form-container button {
   margin-top: 15px;
   padding: 10px;
   background-color: #007bff;
@@ -538,27 +550,34 @@ input::placeholder {
   font-size: 1rem;
 }
 
-.inventory-form .validation-message {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: red;
-  font-size: 14px;
+.form-container button:hover {
+  background-color: #0056b3;
 }
-
-
-
-
-
-
 
 
 /********************************/
 /* Viewport for larger screens  */
 /********************************/
-@media (min-width: 769px) {   
+@media (min-width: 768px) {   
   body {
     background-image: url("/images/site/small_check.jpg");
+  }
+
+  nav {
+    font-size: 17px;
+  }
+
+  .sub-heading {
+    font-size: 26px;
+    margin-left: 20px;
+  }
+
+  .form-container {
+    max-width: 600px;
+  }
+
+  h1 {
+    font-size: 2em;
   }
 
   #wrapper { 
@@ -653,7 +672,7 @@ input::placeholder {
 
 
   /********************************/
-  /* Classifications Page (Size: 769)*/
+  /* Classifications Page (Size: 768)*/
   /********************************/
   #inv-display {
     display: flex;
@@ -666,7 +685,7 @@ input::placeholder {
 
 
   /********************************/
-  /* Details Page (Size: 769)*/
+  /* Details Page (Size: 768)*/
   /********************************/
   .vehicle-detail {
     font-size: 23px;
@@ -678,6 +697,10 @@ input::placeholder {
     align-items: start;
     gap: 5px;
     font-size: 23px;
+  }
+
+  #detailsHeading  {
+    margin-left: 20px;
   }
 
   .vehicle-image {
@@ -692,15 +715,5 @@ input::placeholder {
 
   .vehicle-info > *:nth-child(odd) {
     background-color: #dedede;
-  }
-
-
-  /********************************/
-  /* Page Headers */
-  /********************************/
-  #loginHeading, #registerHeading, #classificationHeading, #managmentHeading, 
-  #detailsHeading, #errorHeading, #newInvHeading, #newClassificationHeading {
-    font-size: 26px;
-    margin-left: 20px;
   }
 }
