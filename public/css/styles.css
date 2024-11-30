@@ -218,11 +218,6 @@ footer a {
 /********************************/
 /* Classifications Page */
 /********************************/
-#classificationHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 #inv-display li {
   max-width: 280px;
   max-height: 400px;
@@ -258,11 +253,6 @@ footer a {
 /********************************/
 /* Details Page */
 /********************************/
-
-#detailsHeading  {
-  font-size: 26px;
-}
-
 .vehicle-detail {
   font-size: 23px;
 }
@@ -280,11 +270,6 @@ footer a {
 /********************************/
 /* Error Page */
 /********************************/
-#errorHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 #errorHeading, #errorMessage {
   margin-left: 20px;
 }
@@ -303,11 +288,6 @@ footer a {
 /********************************/
 /* Login Page */
 /********************************/
-#loginHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 .login-form {
   max-width: 400px;
   margin: 0 auto;
@@ -394,11 +374,6 @@ ul li a:hover {
 /********************************/
 /* Register Page                */
 /********************************/
-#registerHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 .register-form {
   max-width: 400px;
   margin: 0 auto;
@@ -498,11 +473,6 @@ input::placeholder {
 /********************************/
 /* Inventory Management Page    */
 /********************************/
-#managmentHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 #managmentOptions {
   margin-left: 20px;
   padding-bottom: 5px;
@@ -512,11 +482,6 @@ input::placeholder {
 /********************************/
 /* Inventory Management Page    */
 /********************************/
-#newClassificationHeading {
-  font-size: 26px;
-  margin-left: 20px;
-}
-
 .classification-form {
   margin-left: 20px;
   padding-bottom: 5px;
@@ -526,14 +491,66 @@ input::placeholder {
 /********************************/
 /* Inventory Management Page    */
 /********************************/
-#newInvHeading {
-  font-size: 26px;
-  margin-left: 20px;
+.inventory-form {
+  max-width: 330px;
+  margin: 0 auto;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.inventory-form {
-  
+.inventory-form label {
+  font-size: 18px;
 }
+
+.inventory-form input {
+  padding: 8px;
+  margin-top: 10px;
+}
+
+#classificationList {
+  max-width: 190px;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.inventory-form textarea {
+  margin-top: 10px;
+}
+
+#newInvDescription {
+  display: flex;
+  align-items: center;
+}
+
+#newInvDescription label {
+  margin-right: 5px;
+}
+
+.inventory-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.inventory-form .validation-message {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: red;
+  font-size: 14px;
+}
+
+
+
+
+
+
 
 
 /********************************/
@@ -663,10 +680,6 @@ input::placeholder {
     font-size: 23px;
   }
 
-  #detailsHeading  {
-    margin-left: 20px;
-  }
-
   .vehicle-image {
     grid-column: 1 / 2;
     max-width: 100%;
@@ -679,5 +692,15 @@ input::placeholder {
 
   .vehicle-info > *:nth-child(odd) {
     background-color: #dedede;
+  }
+
+
+  /********************************/
+  /* Page Headers */
+  /********************************/
+  #loginHeading, #registerHeading, #classificationHeading, #managmentHeading, 
+  #detailsHeading, #errorHeading, #newInvHeading, #newClassificationHeading {
+    font-size: 26px;
+    margin-left: 20px;
   }
 }
