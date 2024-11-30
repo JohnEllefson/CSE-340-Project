@@ -303,6 +303,11 @@ footer a {
 /********************************/
 /* Login Page */
 /********************************/
+#loginHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
 .login-form {
   max-width: 400px;
   margin: 0 auto;
@@ -344,9 +349,56 @@ footer a {
 }
 
 
+/***************************/
+/* Management Page         */
+/***************************/
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+
+/***********************/
+/* Classification Page */
+/***********************/
+.classification-form .error {
+  border-color: red;
+}
+
+.classification-form .validation-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Button Placement */
+.classification-form button {
+  margin-top: 1em;
+}
+
+
 /********************************/
 /* Register Page                */
 /********************************/
+#registerHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
 .register-form {
   max-width: 400px;
   margin: 0 auto;
@@ -356,6 +408,10 @@ footer a {
 
 .register-form label {
   margin-top: 10px;
+}
+
+.form-instructions {
+  margin-left: 20px;
 }
 
 .register-form input {
@@ -436,6 +492,47 @@ input {
 
 input::placeholder {
   color: #888; /* Light gray */
+}
+
+
+/********************************/
+/* Inventory Management Page    */
+/********************************/
+#managmentHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+#managmentOptions {
+  margin-left: 20px;
+  padding-bottom: 5px;
+}
+
+
+/********************************/
+/* Inventory Management Page    */
+/********************************/
+#newClassificationHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+.classification-form {
+  margin-left: 20px;
+  padding-bottom: 5px;
+}
+
+
+/********************************/
+/* Inventory Management Page    */
+/********************************/
+#newInvHeading {
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+.inventory-form {
+  
 }
 
 
