@@ -12,8 +12,8 @@ importers:
         specifier: ^2.4.3
         version: 2.4.3
       body-parser:
-        specifier: link:body-parser
-        version: link:body-parser
+        specifier: ^1.20.2
+        version: 1.20.3
       connect-flash:
         specifier: ^0.1.1
         version: 0.1.1
