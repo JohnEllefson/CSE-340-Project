@@ -115,10 +115,10 @@ validate.checkLoginData = async (req, res, next) => {
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
     res.render("account/login", {
-      errors: errors.array(), // Convert to an array for EJS
+      errors: errors.array(),
       title: "Login",
       nav,
-      account_email, // Sticky form value
+      account_email,
     });
     return;
   }

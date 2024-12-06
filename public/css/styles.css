@@ -344,15 +344,30 @@ footer a {
 /* Management Page Styles  */
 /***************************/
 .management-container {
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .management-container h2 {
+  font-size: 1.8em;
+  font-weight: bold;
   text-align: center;
-  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.management-container p {
+  font-size: 1.4em;
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
 }
 
 .management-container ul {
@@ -361,19 +376,21 @@ footer a {
 }
 
 .management-container ul li {
-  margin: 10px 0;
-  font-size: 18px;
+  margin: 15px 0;
+  font-size: 1.1rem;
 }
 
 .management-container ul li a {
   text-decoration: none;
   color: #007bff;
   display: block;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #007bff;
   border-radius: 5px;
   text-align: center;
   background-color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -392,8 +409,32 @@ footer a {
 }
 
 .management-container a {
+  font-size: 1.1rem;
+}
+
+.management-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.management-container table th,
+.management-container table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.management-container table th {
+  background-color: #f4f4f4;
   font-weight: bold;
-  font-size: 1.3rem;
+}
+
+.management-container noscript {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  font-size: 1rem;
 }
 
 
@@ -570,6 +611,17 @@ input::placeholder {
   background-color: #0056b3;
 }
 
+button:disabled {
+  background-color: #d6d6d6;
+  color: #999;
+  border-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+button {
+  transition: background-color 0.3s, color 0.3s, opacity 0.3s;
+}
 
 /********************************/
 /* Viewport for larger screens  */
@@ -666,7 +718,7 @@ input::placeholder {
   }
 
   .translucent-box {
-    top: 37%;
+    top: 40%;
     left: 35%;   
     width: 170px;
     height: 160px; 

@@ -1,0 +1,22 @@
+<main>
+  <h1><%= title %></h1>
+
+  <!-- Flash Message -->
+  <div class="flash-message">
+    <%- messages() %>
+  </div>
+
+  <!-- Error Messages -->
+  <% if (errors && errors.length) { %>
+    <div class="error-message">
+      <ul>
+        <% errors.forEach(function (error) { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <!-- Account Management Content -->
+  <p>You're logged in!</p>
+</main>

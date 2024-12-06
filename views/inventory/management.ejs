@@ -18,4 +18,21 @@
       <li><a href="/inv/add-inventory">Add New Inventory Item</a></li>
     </ul>
   </section>
+
+  <!-- Inventory Management Section -->
+  <h2>Manage Inventory</h2>
+  <p>Select a classification from the list below to see the items belonging to that classification.</p>
+
+  <!-- Classification Dropdown -->
+  <div>
+    <%- classificationSelect %>
+  </div>
+
+  <!-- Inventory Display Table -->
+  <table id="inventoryDisplay"></table>
+
+  <!-- NoScript Fallback -->
+  <noscript>JavaScript must be enabled to use this page.</noscript>
 </div>
+
+<script src="../../js/inventory.js"></script>

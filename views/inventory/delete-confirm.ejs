@@ -1,0 +1,46 @@
+<h2 class="sub-heading">Delete Inventory Item</h2>
+<p>Confirm Deletion - The delete is permanent.</p>
+
+<!-- Flash Messages -->
+<% if (messages && Object.keys(messages).length > 0) { %>
+  <div class="flash-message">
+    <% Object.keys(messages).forEach(function(type) { %>
+      <div class="flash-<%= type %>">
+        <% messages[type].forEach(function(msg) { %>
+          <p><%= msg %></p>
+        <% }); %>
+      </div>
+    <% }); %>
+  </div>
+<% } %>
+
+<!-- Error Messages -->
+<% if (errors && errors.length > 0) { %>
+  <div class="error-message">
+    <ul>
+      <% errors.forEach(function (error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %> 
+
+<div class="form-container">
+  <form action="/inv/delete" method="POST">
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+    <label for="inv_make">Make:</label>
+    <input type="text" id="inv_make" name="inv_make" value="<%= inv_make %>" readonly class="readonly-input">
+
+    <label for="inv_model">Model:</label>
+    <input type="text" id="inv_model" name="inv_model" value="<%= inv_model %>" readonly class="readonly-input">
+
+    <label for="inv_year">Year:</label>
+    <input type="text" id="inv_year" name="inv_year" value="<%= inv_year %>" readonly class="readonly-input">
+
+    <label for="inv_price">Price:</label>
+    <input type="text" id="inv_price" name="inv_price" value="<%= inv_price %>" readonly class="readonly-input">
+
+    <button type="submit" class="btn-delete">Delete</button>
+  </form>
+</div>

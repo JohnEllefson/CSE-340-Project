@@ -1,10 +1,16 @@
 
-<h2 class="sub-heading">Add New Inventory Item</h2>
+<h2 class="sub-heading">Modify Inventory Item</h2>
 
 <!-- Flash Messages -->
-<% if (typeof messages !== "undefined" && messages.length > 0) { %>
+<% if (messages && Object.keys(messages).length > 0) { %>
   <div class="flash-message">
-    <%- messages %>
+    <% Object.keys(messages).forEach(function(type) { %>
+      <div class="flash-<%= type %>">
+        <% messages[type].forEach(function(msg) { %>
+          <p><%= msg %></p>
+        <% }); %>
+      </div>
+    <% }); %>
   </div>
 <% } %>
 
@@ -21,9 +27,9 @@
 
 <!-- Form -->
 <div class="form-container">
-  <form action="/inv/add-inventory" method="POST">
+  <form action="/inv/update" id="updateForm" method="POST">
     <label for="classificationList">Classification:</label>
-    <%- classificationDropdown %>
+    <%- classificationSelect %>
 
     <label for="inv_make">Make:</label>
     <input
@@ -148,11 +154,14 @@
 
     <br>
 
-    <button type="submit">Add Inventory</button>
+    <button type="submit" disabled>Update Vehicle</button>
+    <input type="hidden" name="inv_id"
+      <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+      <% } %>>
   </form>
 </div>
 
-<script>
+<script src="/js/inv-update.js">
   document.querySelectorAll('input[required], textarea[required]').forEach((input) => {
     input.addEventListener('blur', (event) => {
       const field = event.target;
