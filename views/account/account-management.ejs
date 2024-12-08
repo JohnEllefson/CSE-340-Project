@@ -1,22 +1,32 @@
-<main>
+<div class="account-management-container">
+  <!-- Title -->
   <h1><%= title %></h1>
 
   <!-- Flash Message -->
-  <div class="flash-message">
-    <%- messages() %>
-  </div>
-
-  <!-- Error Messages -->
-  <% if (errors && errors.length) { %>
-    <div class="error-message">
+  <% if (messages && messages.length > 0) { %>
+    <div class="flash-message">
       <ul>
-        <% errors.forEach(function (error) { %>
-          <li><%= error.msg %></li>
-        <% }) %>
+        <% messages.forEach(function (message) { %>
+          <li><%= message %></li>
+        <% }); %>
       </ul>
     </div>
-  <% } %>
+  <% } %>  
 
-  <!-- Account Management Content -->
-  <p>You're logged in!</p>
-</main>
+  <!-- Greeting -->
+  <h2>Welcome <%= accountData.account_firstname || "User" %>!</h2>
+
+  <!-- Update Account Link -->
+  <p>
+    <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+  </p>
+  <br>
+
+  <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+    <h3>Inventory Management</h3>
+    <p>
+      <a href="/inv/">Manage Inventory</a>
+    </p>
+    <br><br>
+  <% } %>
+</div>

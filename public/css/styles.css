@@ -69,9 +69,43 @@ nav ul li a {
   top: -10px;
 }
 
+#header #account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#header .account-info {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+#header .account-info a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#header .account-info a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.welcome-link {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.welcome-link:hover {
+  text-decoration: underline;
+  color: #003f88;
+}
+
 .error-message {
   color: red;
-  font-size: 0.9em;
+  font-size: 1em;
   margin-top: 5px;
 }
 
@@ -332,6 +366,11 @@ footer a {
   color: #212529;
   border-radius: 5px;
   text-align: center;
+  display: none;
+}
+
+.flash-message:has(ul li) {
+  display: block; /* Only show when there are messages */
 }
 
 .register-link {
@@ -565,6 +604,7 @@ input::placeholder {
 .form-container {
   max-width: 400px;
   margin: 0 auto;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -622,6 +662,57 @@ button:disabled {
 button {
   transition: background-color 0.3s, color 0.3s, opacity 0.3s;
 }
+
+
+/********************************/
+/* Account Management View      */
+/********************************/
+.account-management-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-management-container h1 {
+  font-size: 2.1em;
+  margin-bottom: 20px;
+}
+
+.account-management-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.account-management-container h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.account-management-container p {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+#classificationList {
+  width: 200px;
+  height: 40px;
+  font-size: 15px;
+  display: block;
+}
+
+#manageInvClassification {
+  margin: 0 auto;
+}
+
+.management-container {
+  margin-top: 20px;
+}
+
 
 /********************************/
 /* Viewport for larger screens  */

@@ -5,16 +5,18 @@
 </p>
 
 <!-- Flash Message -->
-<div class="flash-message">
-  <%- messages() %>
-  <% if (errors) { %>
-    <ul class="notice">
-    <% errors.array().forEach(error => { %>
-      <li><%= error.msg %></li>
-  <%  }) %>
-    </ul>
-  <% } %>
-</div>
+<% if (messages && messages.length > 0) { %>
+  <div class="flash-message">
+    <%- messages() %>
+    <% if (errors) { %>
+      <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+    <%  }) %>
+      </ul>
+    <% } %>
+  </div>
+<% } %>
 
 <!-- Registration Form -->
 <form action="/account/register" method="POST" class="register-form">

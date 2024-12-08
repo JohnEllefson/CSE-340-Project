@@ -1,0 +1,148 @@
+<div class="form-container">
+  <h1><%= title %></h1>
+
+<!-- Flash Messages -->
+<div class="flash-message">
+  <% if (messages && messages.length > 0) { %>
+    <ul>
+      <% messages.forEach(function(message) { %>
+        <li><%= message %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</div>
+
+<!-- Form Errors -->
+<% if (typeof formErrors !== "undefined" && formErrors.length > 0) { %>
+  <div class="error-message">
+    <ul>
+      <% formErrors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<!-- Account Update Form -->
+<form id="updateAccountForm" action="/account/update" method="POST" novalidate>
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+  <label for="account_firstname">First Name</label>
+  <input
+    type="text"
+    id="account_firstname"
+    name="account_firstname"
+    value="<%= accountData.account_firstname || '' %>"
+    class="form-input"
+    pattern="[a-zA-Z]+"
+    required>
+  <span id="account_firstname-error" class="error-message"></span>
+  <br><br>
+
+  <label for="account_lastname">Last Name</label>
+  <input
+    type="text"
+    id="account_lastname"
+    name="account_lastname"
+    value="<%= accountData.account_lastname || '' %>"
+    class="form-input"
+    pattern="[a-zA-Z]+"
+    required>
+  <span id="account_lastname-error" class="error-message"></span>
+  <br><br>
+
+  <label for="account_email">Email</label>
+  <input
+    type="email"
+    id="account_email"
+    name="account_email"
+    value="<%= accountData.account_email || '' %>"
+    class="form-input"
+    pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+    required>
+  <span id="account_email-error" class="error-message"></span>
+  <br><br>
+
+  <button type="submit" id="updateAccountButton" class="submit-button">Update Account</button>
+  <br><br><br><br>
+</form>
+
+<!-- Password Change Form -->
+<form id="changePasswordForm" action="/account/update-password" method="POST" novalidate>
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+  <label for="account_password">New Password</label>
+  <input
+    type="password"
+    id="account_password"
+    name="account_password"
+    class="form-input"
+    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$"
+    required>
+  <span id="new_password-error" class="error-message"></span>
+  <br><br>
+
+  <p class="form-instructions">
+    Note: Entering in a new password will change it for your account. <br>
+    Passwords must be at least 8 characters and contain 1 uppercase, 1 number, and 1 symbol.
+  </p>
+  <button type="submit" id="changePasswordButton" class="submit-button">Change Password</button>
+</form>
+</div>
+
+<!-- Client-side validation logic -->
+<script>
+  // Client-side validation logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const updateForm = document.getElementById("updateAccountForm");
+    const passwordForm = document.getElementById("changePasswordForm");
+
+    // Validate update account form
+    updateForm.addEventListener("submit", (e) => {
+      let valid = true;
+
+      const firstName = document.getElementById("account_firstname");
+      const firstNameError = document.getElementById("account_firstname-error");
+      if (!firstName.checkValidity()) {
+        valid = false;
+        firstNameError.textContent = "First name must contain only letters.";
+      } else {
+        firstNameError.textContent = "";
+      }
+
+      const lastName = document.getElementById("account_lastname");
+      const lastNameError = document.getElementById("account_lastname-error");
+      if (!lastName.checkValidity()) {
+        valid = false;
+        lastNameError.textContent = "Last name must contain only letters.";
+      } else {
+        lastNameError.textContent = "";
+      }
+
+      const email = document.getElementById("account_email");
+      const emailError = document.getElementById("account_email-error");
+      if (!email.checkValidity()) {
+        valid = false;
+        emailError.textContent = "Enter a valid email address.";
+      } else {
+        emailError.textContent = "";
+      }
+
+      if (!valid) e.preventDefault();
+    });
+
+    // Validate password change form
+    passwordForm.addEventListener("submit", (e) => {
+      const password = document.getElementById("account_password");
+      const passwordError = document.getElementById("new_password-error");
+
+      if (!password.checkValidity()) {
+        e.preventDefault();
+        passwordError.textContent =
+          "Password must be at least 8 characters long and include at least one letter and one number.";
+      } else {
+        passwordError.textContent = "";
+      }
+    });
+  });
+</script>

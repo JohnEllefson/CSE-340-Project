@@ -21,6 +21,8 @@ const pool = require('./database/')
 const accountRoute  = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const jwt = require("jsonwebtoken");
+
 
 /* ***********************
  * Middleware
@@ -52,6 +54,21 @@ app.use(cookieParser())
 
 // JWT Check Middleware
 app.use(utilities.checkJWTToken)
+
+// Middleware to check login status and set locals
+app.use((req, res, next) => {
+  res.locals.loggedin = req.cookies.jwt ? true : false;
+  if (res.locals.loggedin) {
+    const token = req.cookies.jwt;
+    try {
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      res.locals.clientName = decoded.clientName || "User";
+    } catch (error) {
+      console.error("Invalid token:", error.message);
+    }
+  }
+  next();
+});
 
 /* ***********************
  * View Engine and Templates

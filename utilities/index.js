@@ -152,4 +152,29 @@ Util.checkLogin = (req, res, next) => {
  }
 
 
+ /* ****************************************
+ *  Ensure account data is attached to the request
+ * ************************************ */
+ Util.attachAccountData = (req, res, next) =>{
+   const token = req.cookies.jwt;
+   if (!token) {
+     req.accountData = null;
+     return next();
+   }
+ 
+   try {
+     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+     req.accountData = {
+       account_id: decoded.account_id,
+       account_firstname: decoded.clientName,
+       account_type: decoded.account_type,
+     };
+     next();
+   } catch (error) {
+     console.error("Error decoding token in attachAccountData:", error.message);
+     req.accountData = null;
+     next();
+   }
+ }
+ 
 module.exports = Util;

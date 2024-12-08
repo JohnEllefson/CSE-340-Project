@@ -31,7 +31,7 @@ invModel.getInventoryByClassificationId = async function (classification_id) {
  *****************************/
 invModel.getInventoryById = async function (inventoryId) {
   try {
-    const db = require("../database/index"); // Assuming a db module exists for database queries
+    const db = require("../database/index");
     const sql = "SELECT * FROM inventory WHERE inv_id = $1";
     const result = await db.query(sql, [inventoryId]);
     return result.rows[0];

@@ -5,15 +5,23 @@ const utilities = require("../utilities/");
 const accountController = require("../controllers/accountController");
 const regValidate = require('../utilities/account-validation')
 
-// Deliver the Account Management View
+// Deliver Account Management View
 router.get(
-  "/", 
-  utilities.checkLogin, 
+  "/",
+  utilities.checkJWTToken,
+  utilities.checkLogin,
+  utilities.attachAccountData,
   utilities.handleErrors(accountController.buildAccountManagementView)
-)
+);
 
 // Route to deliver the login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
+
+// Route to logout the user
+router.get("/logout", (req, res) => {
+  res.clearCookie("jwt");
+  res.redirect("/");
+});
 
 // Route to deliver the registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
@@ -33,5 +41,29 @@ router.post(
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
 )
+
+// Update Account Information Route
+router.get(
+  "/update/:id",
+  utilities.checkLogin,
+  utilities.attachAccountData,
+  utilities.handleErrors(accountController.getUpdateAccountView)
+);
+
+// Process Account Update Form
+router.post(
+  "/update",
+  regValidate.newAccountRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.processUpdateAccount)
+);
+
+// Process Update Password Form
+router.post(
+  "/update-password",
+  regValidate.passwordValidationRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.processUpdatePassword)
+);
 
 module.exports = router;
