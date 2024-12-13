@@ -8,10 +8,11 @@
   <div id="account">
     <!-- Dynamic Links Based on Login Status -->
     <% if (locals.loggedin) { %>
-      <a href="/account/" class="welcome-link">Welcome <%= locals.clientName || 'User' %></a>
-      <a href="/account/logout" class="logout-link">Logout</a>
+      <a href="/account/" class="header-link welcome-link">Welcome <%= locals.clientName || 'User' %></a>
+      <a href="/account/favorites" class="header-link favorites-link">My Favorites</a>
+      <a href="/account/logout" class="header-link logout-link">Logout</a>
     <% } else { %>
-      <a href="/account/login" class="login-link">My Account</a>
+      <a href="/account/login" class="header-link login-link">My Account</a>
     <% } %>
   </div>
 </header>

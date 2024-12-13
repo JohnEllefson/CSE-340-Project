@@ -110,5 +110,73 @@ async function getAccountById(accountId) {
   }
 }
 
+/* ******************************************
+ *  Get all favorites for a given account_id
+ * ******************************************/
+async function getFavoritesByAccountId(accountId) {
+  const sql = `
+    SELECT f.favorite_id, f.account_id, f.inv_id, 
+           i.inv_make, i.inv_model, i.inv_year, 
+           i.inv_thumbnail, i.inv_price
+    FROM favorites f
+    JOIN inventory i ON f.inv_id = i.inv_id
+    WHERE f.account_id = $1;
+  `;
+
+  try {
+    const result = await pool.query(sql, [accountId]);
+    return result.rows;
+  } catch (error) {
+    console.error("Error fetching favorites:", error.message);
+    throw new Error("Error fetching favorites.");
+  }
+}
+
+/* ******************************************
+ *  Add a favorite for a given account_id
+ * ******************************************/
+async function addFavorite(accountId, invId) {
+  const sql = `
+    INSERT INTO favorites (account_id, inv_id)
+    VALUES ($1, $2)
+    ON CONFLICT DO NOTHING;
+  `;
+  if (!accountId || !invId) {
+    throw new Error("Account ID or Inventory ID is missing");
+  }
+
+  return await pool.query(sql, [accountId, invId]);
+}
+
+
+/* ******************************************
+ *  Remove a favorite for a given account_id
+ * ******************************************/
+async function removeFavorite(accountId, invId) {
+  const sql = `
+    DELETE FROM favorites
+    WHERE account_id = $1 AND inv_id = $2;
+  `;
+  if (!accountId || !invId) {
+    throw new Error("Account ID or Inventory ID is missing  ");
+  }
+
+  return await pool.query(sql, [accountId, invId]);
+};
+
+/* ******************************************
+ *  Remove a favorite for a given account_id
+ * ******************************************/
+async function isVehicleFavorited(accountId, invId) {
+  const sql = `
+    SELECT COUNT(*) 
+    FROM favorites 
+    WHERE account_id = $1 AND inv_id = $2;
+  `;
+  const result = await pool.query(sql, [accountId, invId]);
+  return parseInt(result.rows[0].count, 10) > 0;
+}
+
 module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, 
-                  updateAccount, updatePassword, getAccountById};
+                  updateAccount, updatePassword, getAccountById, getFavoritesByAccountId,
+                  addFavorite, removeFavorite, isVehicleFavorited};

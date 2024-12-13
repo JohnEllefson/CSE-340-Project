@@ -1,0 +1,16 @@
+<h2 class="sub-heading"><%= title %></h2>
+
+<!-- Flash Message -->
+<div class="flash-message">
+  <% if (messages && messages.length > 0) { %>
+    <ul>
+      <% messages.forEach(function(message) { %>
+        <li><%= message %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</div>
+
+<!-- Vehicle Favorites Grid -->
+<%- grid %>
+<script src="/js/favorites.js"></script>

@@ -66,4 +66,25 @@ router.post(
   utilities.handleErrors(accountController.processUpdatePassword)
 );
 
+// Process the Favorites page
+router.get(
+  "/favorites",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildFavoritesPage)
+);
+
+// Add a favorite
+router.post(
+  "/favorites/:invId", 
+  utilities.checkLogin, 
+  utilities.handleErrors(accountController.addFavorite)
+);
+
+// Remove a favorite
+router.delete(
+  "/favorites/:invId", 
+  utilities.checkLogin, 
+  utilities.handleErrors(accountController.deleteFavorite)
+);
+
 module.exports = router;

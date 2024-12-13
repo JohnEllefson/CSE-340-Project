@@ -309,5 +309,85 @@ async function getUpdateAccountView(req, res, next) {
   }
 };
 
+/* *************************
+ *  Deliver Favorites View
+ * *************************/
+async function buildFavoritesPage(req, res, next) {
+  try {
+    const accountId = res.locals.accountData.account_id;
+    const favorites = await accountModel.getFavoritesByAccountId(accountId);
+    const messages = [];
+    if (favorites.length === 0) {
+      messages.push("No vehicles currently favorited.");
+    }
+    
+    // Build the favorites grid
+    const grid = await utilities.buildFavoritesGrid(favorites, res.locals.loggedin);
+    const nav = await utilities.getNav();
+
+    // Render the favorites page
+    res.render("account/favorites", {
+      title: "My Favorites",
+      nav: nav,
+      grid,
+      messages: messages,
+    });
+  } catch (error) {
+    console.error("Error building favorites page:", error);
+    next(error);
+  }
+}
+
+/* *************************
+ *  Add a Favorite
+ * *************************/
+async function addFavorite(req, res, next) {
+  try {
+    const accountId = res.locals.accountData.account_id;
+    const invId = parseInt(req.body.invId, 10);
+    if (isNaN(invId)) {
+      throw new Error("Invalid invId received");
+    }
+
+    console.log("Received invId in addFavorite:", req.body.invId);
+
+    if (!accountId || !invId) {
+      throw new Error("Account ID or Inventory ID is missing");
+    }
+    await accountModel.addFavorite(accountId, invId); 
+    res.status(200).json({ success: true, message: "Vehicle added to favorites." });
+
+  } catch (error) {
+    console.error("Error adding favorite:", error);
+    res.status(500).json({ success: false, message: "Failed to add favorite." });
+  }
+}
+
+/* *************************
+ *  Remove a Favorite
+ * *************************/
+async function deleteFavorite(req, res, next) {
+  try {
+    const accountId = res.locals.accountData.account_id;
+    const invId = parseInt(req.body.invId, 10);
+    if (isNaN(invId)) {
+      throw new Error("Invalid invId received");
+    }
+
+    console.log("Received invId in deleteFavorite:", req.body.invId);
+
+    if (!accountId || !invId) {
+      throw new Error("Account ID or Inventory ID is missing");
+    }
+    await accountModel.removeFavorite(accountId, invId);
+    res.status(200).json({ success: true, message: "Vehicle removed from favorites." });
+
+  } catch (error) {
+    console.error("Error removing favorite:", error);
+    res.status(500).json({ success: false, message: "Failed to remove favorite." });
+  }
+}
+
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, 
-                   buildAccountManagementView, buildUpdateAccountView, processUpdateAccount, processUpdatePassword, getUpdateAccountView };
+                   buildAccountManagementView, buildUpdateAccountView, processUpdateAccount, processUpdatePassword, getUpdateAccountView, buildFavoritesPage,
+                   addFavorite, deleteFavorite };

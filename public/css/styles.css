@@ -262,7 +262,7 @@ footer a {
 /********************************/
 #inv-display li {
   max-width: 280px;
-  max-height: 400px;
+  max-height: 420px;
   margin: 0 auto 20px auto;
   border: 3px solid #9c9c9c;
   border-radius: 25px;
@@ -711,6 +711,76 @@ button {
 
 .management-container {
   margin-top: 20px;
+}
+
+
+/*********************/
+/* Header View       */
+/*********************/
+.header-link {
+  font-weight: bold;
+  color: #0056b3;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+  color: #003f88;
+}
+
+/* Specific Link Adjustments */
+.favorites-link {
+  margin-right: 10px;
+}
+
+.logout-link {
+  margin-left: 10px;
+}
+
+.login-link {
+  margin-left: 10px;
+}
+
+.heart-icon {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.heart-icon:hover {
+  opacity: 0.9;
+  transform: scale(1.12);
+}
+
+
+/***************************/
+/* Favorite Button Styling */
+/***************************/
+.favorite-button {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 150px;
+  height: 50px;
+}
+
+.favorite-button.not-favorited {
+  background-color: #d1c6c6;
+  color: #333;
+}
+
+.favorite-button.favorited {
+  background-color: #0056b3;
+  color: white;
+}
+
+.favorite-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
 }
 
 

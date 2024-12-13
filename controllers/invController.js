@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model");
+const accountModel = require("../models/account-model");
 const utilities = require("../utilities/");
 
 const invCont = {};
@@ -9,15 +10,39 @@ const invCont = {};
 invCont.buildByClassificationId = async function (req, res, next) {
   try {
     const classification_id = req.params.classificationId;
+    const accountId = res.locals.loggedin ? res.locals.accountData.account_id : null;
+
+    // Fetch inventory data
     const data = await invModel.getInventoryByClassificationId(classification_id);
-    const grid = await utilities.buildClassificationGrid(data);
+
+    // If logged in, fetch favorites for the user
+    let favorites = [];
+    if (accountId) {
+      favorites = await accountModel.getFavoritesByAccountId(accountId);
+    }
+
+    // Map over inventory data and determine if each vehicle is favorited
+    const updatedData = data.map((vehicle) => {
+      return {
+        ...vehicle,
+        isFavorited: favorites.some((fav) => fav.inv_id === vehicle.inv_id),
+      };
+    });
+
+    console.log(updatedData);
+
+    // Build the classification grid with updated data
+    const grid = await utilities.buildClassificationGrid(updatedData, res.locals.loggedin);
     const nav = await utilities.getNav();
+
+    // Render the classification page
     res.render("inventory/classification", {
       title: "Vehicle Classification",
       nav,
       grid,
     });
   } catch (error) {
+    console.error("Error building classification view:", error);
     next(error);
   }
 };
@@ -27,19 +52,27 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *******************************/
 invCont.buildDetailByInventoryId = async function (req, res, next) {
   try {
-    const inventoryId = req.params.inventoryId;
-    const vehicleData = await invModel.getInventoryById(inventoryId);
+    const invId = req.params.inventoryId;
+    const vehicleData = await invModel.getInventoryById(invId);
     if (!vehicleData) {
       return res.status(404).send("Vehicle not found.");
     }
-    const detailViewHTML = await utilities.buildVehicleDetailView(vehicleData);
+
+    let isFavorited;
+    if (res.locals.loggedin) {
+      isFavorited = await accountModel.isVehicleFavorited(res.locals.accountData.account_id, invId);
+    }
+
+    const detailViewHTML = await utilities.buildVehicleDetailView(vehicleData, isFavorited);
     const nav = await utilities.getNav();
+
     res.render("inventory/detail", {
       title: `${vehicleData.inv_make} ${vehicleData.inv_model}`,
       nav,
       detailViewHTML,
     });
   } catch (error) {
+    console.error("Error building detail view:", error);
     next(error);
   }
 };
